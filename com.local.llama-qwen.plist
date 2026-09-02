@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+  "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.local.llama-qwen</string>
+
+    <key>ProgramArguments</key>
+    <array>
+        <string>/opt/local/bin/llama</string>
+        <string>server</string>
+
+        <string>-hf</string>
+        <string>ggml-org/Qwen3.8-27B-GGUF:Q4_K_M</string>
+
+        <string>-hfd</string>
+        <string>ggml-org/Qwen3.8-27B-GGUF:Q4_0</string>
+
+        <string>--alias</string>
+        <string>qwen3.8-27b</string>
+
+        <string>--metrics</string>
+        <string>--spec-default</string>
+
+        <string>--spec-type</string>
+        <string>draft-mtp</string>
+
+        <string>--reasoning-preserve</string>
+
+        <string>--host</string>
+        <string>192.168.102.67</string>
+
+        <string>--port</string>
+        <string>9931</string>
+
+        <string>-lv</string>
+        <string>2</string>
+
+        <string>--image-min-tokens</string>
+        <string>1024</string>
+
+        <string>--api-key</string>
+        <string>HERE_GOES_THE_API_KEY</string>
+    </array>
+
+    <key>RunAtLoad</key>
+    <true/>
+
+    <key>KeepAlive</key>
+    <true/>
+
+    <key>ProcessType</key>
+    <string>Interactive</string>
+
+    <key>StandardOutPath</key>
+    <string>/tmp/llama-qwen.stdout.log</string>
+
+    <key>StandardErrorPath</key>
+    <string>/tmp/llama-qwen.stderr.log</string>
+
+    <key>EnvironmentVariables</key>
+    <dict>
+        <key>PATH</key>
+        <string>/opt/local/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin</string>
+    </dict>
+</dict>
+</plist>
