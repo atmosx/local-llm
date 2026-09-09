@@ -8,7 +8,7 @@
 	--spec-default \
 	--spec-type draft-mtp \
 	--reasoning-preserve \
-	--host 192.168.102.73 \
+	--host 192.168.2.3 \
 	--port 9931 \
 	-lv 2 \
 	--image-min-tokens 1024 \

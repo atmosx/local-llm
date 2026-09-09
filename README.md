@@ -4,16 +4,22 @@ This guide runs a `llama.cpp` server as a per-user macOS LaunchAgent. The server
 
 ## Prerequisites
 
+Install `llama` using MacPorts before proceeding:
+
+```
+$ sudo port install llama.cpp
+```
+
 - macOS with `launchd`
 - `llama.cpp` installed, with the executable at `/opt/local/bin/llama`
 - Access to the Hugging Face model repositories used below
-- The IP address `192.168.102.73` assigned to a network interface on the Mac
+- The IP address `192.168.x.x` assigned to a network interface on the Mac
 
 Confirm the executable and IP address before installing:
 
 ```bash
 test -x /opt/local/bin/llama && /opt/local/bin/llama --version
-ifconfig | grep 'inet 192.168.102.73'
+ifconfig | grep 'inet 192.168.x.x'
 ```
 
 If the executable or IP address differs, update the corresponding values in the property list below.
@@ -53,7 +59,7 @@ Create `~/Library/LaunchAgents/com.local.llama-qwen.plist` with the following co
         <string>draft-mtp</string>
         <string>--reasoning-preserve</string>
         <string>--host</string>
-        <string>192.168.102.73</string>
+        <string>192.168.x.x</string>
         <string>--port</string>
         <string>9931</string>
         <string>-lv</string>
@@ -117,13 +123,13 @@ Test the OpenAI-compatible models endpoint from a machine that can reach the Mac
 ```bash
 curl --fail --silent --show-error \
   -H 'Authorization: Bearer REPLACE_WITH_API_KEY' \
-  http://192.168.102.73:9931/v1/models
+  http://192.168.x.x:9931/v1/models
 ```
 
 Metrics are available at:
 
 ```text
-http://192.168.102.73:9931/metrics
+http://192.168.x.x:9931/metrics
 ```
 
 ## Service Management
@@ -160,7 +166,7 @@ launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/com.local.llama-qwen.pli
 
 - **`Bootstrap failed: 5: Input/output error`**: the agent may already be loaded. Run `bootout`, then `bootstrap` again.
 - **The process repeatedly exits**: inspect both files in `/tmp/llama-qwen.*.log` and verify the command-line options are supported by the installed `llama.cpp` version.
-- **Cannot bind the address**: confirm `192.168.102.73` is assigned to the Mac, or change `--host` to the correct address. Use `127.0.0.1` for local-only access or `0.0.0.0` for all interfaces.
+- **Cannot bind the address**: confirm `192.168.x.x` is assigned to the Mac, or change `--host` to the correct address. Use `127.0.0.1` for local-only access or `0.0.0.0` for all interfaces.
 - **Clients cannot connect**: check the macOS firewall, network routing, port `9931`, and whether the server is listening with `lsof -nP -iTCP:9931 -sTCP:LISTEN`.
 - **Model access fails**: verify the repository names, network access, available disk space, and any Hugging Face credentials required for the models.
 
