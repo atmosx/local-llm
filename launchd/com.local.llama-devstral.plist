@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+  "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.local.llama-devstral</string>
+
+    <key>ProgramArguments</key>
+    <array>
+        <string>/opt/local/bin/llama</string>
+        <string>server</string>
+
+        <string>-hf</string>
+        <string>lmstudio-community/Devstral-Small-2-24B-Instruct-2512-GGUF:Q4_K_M</string>
+
+        <string>--alias</string>
+        <string>devstral-small-2-24b</string>
+
+        <string>--metrics</string>
+
+        <string>--host</string>
+        <string>192.168.102.67</string>
+
+        <string>--port</string>
+        <string>9931</string>
+
+        <string>-c</string>
+        <string>65536</string>
+
+        <string>-ngl</string>
+        <string>99</string>
+
+        <string>-fa</string>
+        <string>on</string>
+
+        <string>-lv</string>
+        <string>2</string>
+
+        <string>--api-key</string>
+        <string>API_KEY</string>
+    </array>
+
+    <key>RunAtLoad</key>
+    <true/>
+
+    <key>KeepAlive</key>
+    <true/>
+
+    <key>ProcessType</key>
+    <string>Interactive</string>
+
+    <key>StandardOutPath</key>
+    <string>/tmp/llama-devstral.stdout.log</string>
+
+    <key>StandardErrorPath</key>
+    <string>/tmp/llama-devstral.stderr.log</string>
+
+    <key>EnvironmentVariables</key>
+    <dict>
+        <key>PATH</key>
+        <string>/opt/local/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin</string>
+    </dict>
+</dict>
+</plist>
