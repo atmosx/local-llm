@@ -12,20 +12,28 @@
         <string>/opt/local/bin/llama</string>
         <string>server</string>
 
+        <string>--ctx-size</string>
+        <string>65536</string>
+
+        <string>--parallel</string>
+        <string>1</string>
+
+        <string>--n-predict</string>
+        <string>16384</string>
+
+        <string>--flash-attn</string>
+        <string>on</string>
+
+        <string>--gpu-layers</string>
+        <string>all</string>
+
         <string>-hf</string>
         <string>ggml-org/Qwen3.8-27B-GGUF:Q4_K_M</string>
-
-        <string>-hfd</string>
-        <string>ggml-org/Qwen3.8-27B-GGUF:Q4_0</string>
 
         <string>--alias</string>
         <string>qwen3.8-27b</string>
 
         <string>--metrics</string>
-        <string>--spec-default</string>
-
-        <string>--spec-type</string>
-        <string>draft-mtp</string>
 
         <string>--reasoning-preserve</string>
 
